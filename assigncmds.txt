@@ -1,0 +1,6 @@
+pip install robotframework 
+python -m pip install robotframework-requests
+pip install robotframework-seleniumlibrary
+
+after install run below cmd:
+robot clerk.robot

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.1 on win32)" generated="20230110 18:45:29.067" rpa="false" schemaversion="3">
+<suite id="s1" name="Clerk" source="D:\github\Assessment Projects\OppenheimerProject\clerk.robot">
+<test id="s1-t1" name="T001_Clerk_Insert_Single_Record" line="19">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230110 18:45:29.298" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8080/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230110 18:45:29.298" endtime="20230110 18:45:29.298"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{header}</var>
+<arg>Content-Type=${CONTENT_TYPE}</arg>
+<arg>User-Agent=RobotFramework</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230110 18:45:29.298" level="INFO">&amp;{header} = { Content-Type=application/json | User-Agent=RobotFramework }</msg>
+<status status="PASS" starttime="20230110 18:45:29.298" endtime="20230110 18:45:29.298"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/calculator/insert</arg>
+<arg>data={"birthday":"14081995","gender":"F","name":"Likhita","natid":"L9493956300","salary":"15000","tax":"2000"}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230110 18:45:29.519" level="INFO">POST Request : url=http://localhost:8080/calculator/insert 
+ path_url=/calculator/insert 
+ headers={'User-Agent': 'RobotFramework', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '105'} 
+ body={"birthday":"14081995","gender":"F","name":"Likhita","natid":"L9493956300","salary":"15000","tax":"2000"} 
+ </msg>
+<msg timestamp="20230110 18:45:29.519" level="INFO">POST Response : url=http://localhost:8080/calculator/insert 
+ status=202, reason= 
+ headers={'Content-Type': 'text/plain;charset=UTF-8', 'Content-Length': '7', 'Date': 'Tue, 10 Jan 2023 10:45:29 GMT'} 
+ body=Alright 
+ </msg>
+<msg timestamp="20230110 18:45:29.519" level="INFO">${response} = &lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:29.298" endtime="20230110 18:45:29.519"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>202</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.519"/>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20230110 18:45:29.519" level="INFO">Set test message to:
+&lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.519"/>
+</kw>
+<doc>Single record of a working class hero should consist of Natural Id
+(natid), Name, Gender, Birthday, Salary and Tax paid</doc>
+<tag>Clerk</tag>
+<tag>Post</tag>
+<status status="PASS" starttime="20230110 18:45:29.298" endtime="20230110 18:45:29.519">&lt;Response [202]&gt;</status>
+</test>
+<test id="s1-t2" name="T002_Clerk_Insert_Multiple_Records" line="29">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230110 18:45:29.519" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8080/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.519"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{header}</var>
+<arg>Content-Type=${CONTENT_TYPE}</arg>
+<arg>User-Agent=RobotFramework</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230110 18:45:29.519" level="INFO">&amp;{header} = { Content-Type=application/json | User-Agent=RobotFramework }</msg>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.519"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/calculator/insertMultiple</arg>
+<arg>data=[{"birthday":"15081955","gender":"M","name":"Peter","natid":"L8919277655","salary":"16000","tax":"143"},{"birthday":"13081995","gender":"F","name":"Mounika","natid":"F12345678","salary":"25000","tax":"3000"}]</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230110 18:45:29.542" level="INFO">POST Request : url=http://localhost:8080/calculator/insertMultiple 
+ path_url=/calculator/insertMultiple 
+ headers={'User-Agent': 'RobotFramework', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '208'} 
+ body=[{"birthday":"15081955","gender":"M","name":"Peter","natid":"L8919277655","salary":"16000","tax":"143"},{"birthday":"13081995","gender":"F","name":"Mounika","natid":"F12345678","salary":"25000","tax":"3000"}] 
+ </msg>
+<msg timestamp="20230110 18:45:29.542" level="INFO">POST Response : url=http://localhost:8080/calculator/insertMultiple 
+ status=202, reason= 
+ headers={'Content-Type': 'text/plain;charset=UTF-8', 'Content-Length': '7', 'Date': 'Tue, 10 Jan 2023 10:45:29 GMT'} 
+ body=Alright 
+ </msg>
+<msg timestamp="20230110 18:45:29.542" level="INFO">${response} = &lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.542"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>202</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230110 18:45:29.542" endtime="20230110 18:45:29.543"/>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20230110 18:45:29.543" level="INFO">Set test message to:
+&lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:29.543" endtime="20230110 18:45:29.543"/>
+</kw>
+<doc>As the Clerk, I should be able to insert more than one working
+class hero into database via an API</doc>
+<tag>Clerk</tag>
+<tag>Post</tag>
+<status status="PASS" starttime="20230110 18:45:29.519" endtime="20230110 18:45:29.543">&lt;Response [202]&gt;</status>
+</test>
+<test id="s1-t3" name="T003_Clerk_Upload_Csv_File" line="39">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${base_url}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--start-maximized")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230110 18:45:29.545" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20230110 18:45:29.543" endtime="20230110 18:45:33.241"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230110 18:45:36.241" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20230110 18:45:33.241" endtime="20230110 18:45:36.241"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Technical Challenge for CDS</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20230110 18:45:36.244" level="INFO">Page title is 'Technical Challenge for CDS'.</msg>
+<status status="PASS" starttime="20230110 18:45:36.241" endtime="20230110 18:45:36.244"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.scrollTo(0, window.scrollY+300)</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20230110 18:45:36.248" level="INFO">Executing JavaScript:
+window.scrollTo(0, window.scrollY+300)
+Without any arguments.</msg>
+<status status="PASS" starttime="20230110 18:45:36.244" endtime="20230110 18:45:36.252"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${UploadFiletest}</arg>
+<arg>${AddFile}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230110 18:45:36.252" level="INFO">Sending D:\github\Assessment Projects\OppenheimerProject\myFile.csv to browser.</msg>
+<status status="PASS" starttime="20230110 18:45:36.252" endtime="20230110 18:45:36.290"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230110 18:45:37.291" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20230110 18:45:36.290" endtime="20230110 18:45:37.291"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Refresh Tax Relief Table</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230110 18:45:37.291" level="INFO">Clicking button 'Refresh Tax Relief Table'.</msg>
+<status status="PASS" starttime="20230110 18:45:37.291" endtime="20230110 18:45:37.355"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230110 18:45:41.355" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20230110 18:45:37.355" endtime="20230110 18:45:41.355"/>
+</kw>
+<kw name="Capture Element Screenshot" library="SeleniumLibrary">
+<arg>${Dtable}</arg>
+<arg>${SaveFile}</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<msg timestamp="20230110 18:45:41.599" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="result.png"&gt;&lt;img src="result.png" width="400px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:41.355" endtime="20230110 18:45:41.599"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230110 18:45:41.599" endtime="20230110 18:45:43.770"/>
+</kw>
+<doc>As the Clerk, I should be able to upload a csv file to a portal so
+that I can populate the database from a UI</doc>
+<tag>Clerk</tag>
+<tag>File_Upload</tag>
+<tag>Post</tag>
+<status status="PASS" starttime="20230110 18:45:29.543" endtime="20230110 18:45:43.770"/>
+</test>
+<test id="s1-t4" name="T004_Bookkeeper_Tax_relief_Query" line="54">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230110 18:45:43.770" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8080/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230110 18:45:43.770" endtime="20230110 18:45:43.770"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{header}</var>
+<arg>Content-Type=${CONTENT_TYPE}</arg>
+<arg>User-Agent=RobotFramework</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230110 18:45:43.770" level="INFO">&amp;{header} = { Content-Type=application/json | User-Agent=RobotFramework }</msg>
+<status status="PASS" starttime="20230110 18:45:43.770" endtime="20230110 18:45:43.770"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/calculator/taxRelief</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230110 18:45:43.791" level="INFO">GET Request : url=http://localhost:8080/calculator/taxRelief 
+ path_url=/calculator/taxRelief 
+ headers={'User-Agent': 'RobotFramework', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230110 18:45:43.791" level="INFO">GET Response : url=http://localhost:8080/calculator/taxRelief 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Jan 2023 10:45:43 GMT'} 
+ body=[{"natid":"L949$$$$$$$","name":"Likhita","relief":"10900.00"},{"natid":"L891$$$$$$$","name":"Peter","relief":"5819.52"},{"natid":"F123$$$$$","name":"Mounika","relief":"18100.00"},{"natid":"P123$$$$$$","name":"Likhita","relief":"10740.00"},{"natid":"P213$$$$$$","name":"Divyank","relief":"11039.00"}] 
+ </msg>
+<msg timestamp="20230110 18:45:43.791" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:43.770" endtime="20230110 18:45:43.791"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230110 18:45:43.791" endtime="20230110 18:45:43.791"/>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20230110 18:45:43.791" level="INFO">Set test message to:
+b'[{"natid":"L949$$$$$$$","name":"Likhita","relief":"10900.00"},{"natid":"L891$$$$$$$","name":"Peter","relief":"5819.52"},{"natid":"F123$$$$$","name":"Mounika","relief":"18100.00"},{"natid":"P123$$$$$$","name":"Likhita","relief":"10740.00"},{"natid":"P213$$$$$$","name":"Divyank","relief":"11039.00"}]'</msg>
+<status status="PASS" starttime="20230110 18:45:43.791" endtime="20230110 18:45:43.791"/>
+</kw>
+<doc>As the Bookkeeper, I should be able to query the amount of tax
+relief for each person in the database so that I can report the
+figures to my Bookkeeping Manager</doc>
+<tag>Bookkeeper</tag>
+<tag>Get</tag>
+<status status="PASS" starttime="20230110 18:45:43.770" endtime="20230110 18:45:43.791">b'[{"natid":"L949$$$$$$$","name":"Likhita","relief":"10900.00"},{"natid":"L891$$$$$$$","name":"Peter","relief":"5819.52"},{"natid":"F123$$$$$","name":"Mounika","relief":"18100.00"},{"natid":"P123$$$$$$","name":"Likhita","relief":"10740.00"},{"natid":"P213$$$$$$","name":"Divyank","relief":"11039.00"}]'</status>
+</test>
+<test id="s1-t5" name="T005_Governor_Dispense_Check" line="65">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${base_url}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--start-maximized")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230110 18:45:43.801" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:8080/'.</msg>
+<status status="PASS" starttime="20230110 18:45:43.801" endtime="20230110 18:45:46.664"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230110 18:45:49.665" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20230110 18:45:46.664" endtime="20230110 18:45:49.665"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>//*[@id="contents"]/a[2]</arg>
+<arg>Dispense Now</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20230110 18:45:49.665" level="INFO">Verifying element '//*[@id="contents"]/a[2]' contains exact text 'Dispense Now'.</msg>
+<status status="PASS" starttime="20230110 18:45:49.665" endtime="20230110 18:45:49.693"/>
+</kw>
+<kw name="Get WebElement" library="SeleniumLibrary">
+<var>${elements}</var>
+<arg>//*[@id="contents"]/a[2]</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<msg timestamp="20230110 18:45:49.703" level="INFO">${elements} = &lt;selenium.webdriver.remote.webelement.WebElement (session="4a619793e8844d5770b33674ba86312f", element="7e55b332-7b3f-4f71-b1bb-ca4120904671")&gt;</msg>
+<status status="PASS" starttime="20230110 18:45:49.693" endtime="20230110 18:45:49.703"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<var>${bg_color}</var>
+<arg>${elements}</arg>
+<arg>value_of_css_property</arg>
+<arg>background-color</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<msg timestamp="20230110 18:45:49.713" level="INFO">${bg_color} = rgba(220, 53, 69, 1)</msg>
+<status status="PASS" starttime="20230110 18:45:49.703" endtime="20230110 18:45:49.713"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${bg_color}</arg>
+<arg>${Red_Color}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230110 18:45:49.713" endtime="20230110 18:45:49.713"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>//*[@id="contents"]/a[2]</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20230110 18:45:49.713" endtime="20230110 18:45:49.995"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>Dispense Now</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20230110 18:45:49.995" level="INFO">Clicking link 'Dispense Now'.</msg>
+<status status="PASS" starttime="20230110 18:45:49.995" endtime="20230110 18:45:50.260"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230110 18:45:53.264" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20230110 18:45:50.260" endtime="20230110 18:45:53.264"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${url}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20230110 18:45:53.271" level="INFO">${url} = http://localhost:8080/dispense</msg>
+<status status="PASS" starttime="20230110 18:45:53.264" endtime="20230110 18:45:53.271"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${url}</arg>
+<arg>${dispense_url}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230110 18:45:53.271" endtime="20230110 18:45:53.271"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>//*[@id="app"]/div/main/div/div/div</arg>
+<arg>Cash dispensed</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20230110 18:45:53.271" level="INFO">Verifying element '//*[@id="app"]/div/main/div/div/div' contains exact text 'Cash dispensed'.</msg>
+<status status="PASS" starttime="20230110 18:45:53.271" endtime="20230110 18:45:53.302"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230110 18:45:53.302" endtime="20230110 18:45:55.465"/>
+</kw>
+<doc>As the Governor, I should be able to see a button on the screen so
+that I can dispense tax relief for my working class heroes</doc>
+<tag>Governor</tag>
+<status status="PASS" starttime="20230110 18:45:43.791" endtime="20230110 18:45:55.465"/>
+</test>
+<test id="s1-t6" name="T001_Clerk_Insert_Single_Record_Neg" line="83">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230110 18:45:55.465" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8080/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230110 18:45:55.465" endtime="20230110 18:45:55.465"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{header}</var>
+<arg>Content-Type=${CONTENT_TYPE}</arg>
+<arg>User-Agent=RobotFramework</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230110 18:45:55.465" level="INFO">&amp;{header} = { Content-Type=application/json | User-Agent=RobotFramework }</msg>
+<status status="PASS" starttime="20230110 18:45:55.465" endtime="20230110 18:45:55.465"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<var>${response}</var>
+<arg>POST On Session</arg>
+<arg>mysession</arg>
+<arg>/calculator/insert</arg>
+<arg>data={"birthday":"14-08-1995","gender":"F","name":"Likhita","natid":"P8919277655","salary":"15000","tax":"2000"}</arg>
+<arg>headers=${header}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="POST On Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>/calculator/insert</arg>
+<arg>data={"birthday":"14-08-1995","gender":"F","name":"Likhita","natid":"P8919277655","salary":"15000","tax":"2000"}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230110 18:45:55.530" level="INFO">POST Request : url=http://localhost:8080/calculator/insert 
+ path_url=/calculator/insert 
+ headers={'User-Agent': 'RobotFramework', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '107'} 
+ body={"birthday":"14-08-1995","gender":"F","name":"Likhita","natid":"P8919277655","salary":"15000","tax":"2000"} 
+ </msg>
+<msg timestamp="20230110 18:45:55.530" level="INFO">POST Response : url=http://localhost:8080/calculator/insert 
+ status=500, reason= 
+ headers={'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Jan 2023 10:45:55 GMT', 'Connection': 'close'} 
+ body={"timestamp":"2023-01-10T10:45:55.502+0000","status":500,"error":"Internal Server Error","message":"Text '14-08-1995' could not be parsed at index 2","path":"/calculator/insert"} 
+ </msg>
+<msg timestamp="20230110 18:45:55.530" level="FAIL">HTTPError: 500 Server Error:  for url: http://localhost:8080/calculator/insert</msg>
+<status status="FAIL" starttime="20230110 18:45:55.465" endtime="20230110 18:45:55.545"/>
+</kw>
+<msg timestamp="20230110 18:45:55.545" level="INFO">${response} = ('FAIL', 'HTTPError: 500 Server Error:  for url: http://localhost:8080/calculator/insert')</msg>
+<status status="PASS" starttime="20230110 18:45:55.465" endtime="20230110 18:45:55.545"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>FAIL</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<msg timestamp="20230110 18:45:55.545" level="FAIL">InvalidResponse: ('FAIL', 'HTTPError: 500 Server Error:  for url: http://localhost:8080/calculator/insert')</msg>
+<status status="FAIL" starttime="20230110 18:45:55.545" endtime="20230110 18:45:55.553"/>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Sets message for the current test case.</doc>
+<status status="NOT RUN" starttime="20230110 18:45:55.553" endtime="20230110 18:45:55.553"/>
+</kw>
+<doc>Single record of a working class hero should consist of Natural Id
+(natid), Name, Gender, Birthday, Salary and Tax paid</doc>
+<tag>Clerk</tag>
+<tag>Post</tag>
+<status status="FAIL" starttime="20230110 18:45:55.465" endtime="20230110 18:45:55.553">InvalidResponse: ('FAIL', 'HTTPError: 500 Server Error:  for url: http://localhost:8080/calculator/insert')</status>
+</test>
+<doc>API Testing in Robot Framework</doc>
+<status status="FAIL" starttime="20230110 18:45:29.067" endtime="20230110 18:45:55.553"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Bookkeeper</stat>
+<stat pass="3" fail="1" skip="0">Clerk</stat>
+<stat pass="1" fail="0" skip="0">File_Upload</stat>
+<stat pass="1" fail="0" skip="0">Get</stat>
+<stat pass="1" fail="0" skip="0">Governor</stat>
+<stat pass="3" fail="1" skip="0">Post</stat>
+</tag>
+<suite>
+<stat pass="5" fail="1" skip="0" id="s1" name="Clerk">Clerk</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
